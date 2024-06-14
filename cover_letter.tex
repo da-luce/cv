@@ -1,0 +1,88 @@
+%-------------------------
+% Cover Letter in LaTeX
+% Author : Dalton Luce
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+% \usepackage[usenames,dvipsnames]{color}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+% \usepackage{multicol}
+\usepackage{tabularx}
+\input{glyphtounicode}
+\usepackage{lipsum}
+\usepackage{xparse}
+\usepackage{ragged2e} %allows for right aligned / left aligned text instead of all justified
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+    \titlerule\vspace{1pt}\scshape\raggedright\Large
+}{}{0em}{\vspace{-5pt}}
+
+% Ensure that generated PDF is machine readable/ATS parsable
+\pdfgentounicode=1
+
+% Use filled circles for bullet points
+\renewcommand\labelitemi{\small\textbullet}
+
+\setlength{\parskip}{\baselineskip}%
+\setlength{\parindent}{0pt}%
+
+%-------------------------------------------
+% COVER LETTER STARTS HERE
+
+\begin{document}
+
+%----------HEADING----------
+
+\begin{minipage}[t]{0.5\textwidth}
+    \vspace*{\fill}
+    \huge \textbf{Dalton Luce}
+    \vspace*{\fill}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.3\textwidth}
+    \setlength{\baselineskip}{15pt}
+    \RaggedLeft
+    Boston, MA \\
+    \href{https://www.linkedin.com/in/dalton-luce/}{\underline{LinkedIn}}
+\end{minipage}
+
+\vspace{10pt}
+
+\noindent\hrulefill
+
+\vspace{10pt}
+
+\today
+
+Recipient's Name \\
+Company's Name \\
+Company's Address \\
+City, State, ZIP Code
+
+Dear [Recipient's Name],
+
+\lipsum[1-4]
+
+Sincerely, \\
+Dalton Luce
+
+%-------------------------------------------
+\end{document}

@@ -24,6 +24,12 @@
         \hspace{10pt}
     \fi
 }
+\newcommand{\emailConditional}{
+    \ifdefined\private
+        \href{mailto:\email}{\underline{\email}}
+        \hspace{10pt}
+    \fi
+}
 
 \documentclass[letterpaper,8pt]{article}
 
@@ -97,8 +103,7 @@
 % Phone
 \phoneConditional
 % Email
-\href{mailto:daltonluce42@gmail.com}{\underline{daltonluce42@gmail.com}}
-\hspace{10pt}
+\emailConditional
 % LinkedIn
 \href{https://www.linkedin.com/in/dalton-luce/}{\underline{LinkedIn}}
 \hspace{10pt}
