@@ -1,0 +1,226 @@
+%-------------------------
+% Resume in LaTex
+% Author : Dalton Luce
+% License : MIT
+%------------------------
+
+ % Conditionally include the private information if `private` true
+ % To render with private info: pdflatex '\def\private{} \input{cv.tex}'
+\ifdefined\private
+  \input{.private.tex}
+\fi
+
+\newcommand{\addressConditional}{
+    \ifdefined\private
+        \address
+    \else
+        Boston, MA
+    \fi
+    \hspace{10pt}
+}
+\newcommand{\phoneConditional}{
+    \ifdefined\private
+        \phone
+        \hspace{10pt}
+    \fi
+}
+
+\documentclass[letterpaper,8pt]{article}
+
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.75in}
+\addtolength{\evensidemargin}{-0.75in}
+\addtolength{\textwidth}{1.5in}
+\addtolength{\topmargin}{-0.8in}
+\addtolength{\textheight}{1.6in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+    \vspace{-3pt}
+    \titlerule\vspace{1pt}\scshape\raggedright\large
+}{}{0em}{\vspace{-10pt}}
+
+% Ensure that generated PDF is machine readable/ATS parsable
+\pdfgentounicode=1
+
+% Use filled circles for bullet points
+\renewcommand\labelitemi{\small\textbullet}
+
+\newcommand{\resumeEntry}[4]{
+    \vspace{4pt}
+    \large \textbf{#1}
+    \normalsize \hfill #2
+    \\
+    \textit{#3} \hfill \textit{#4}
+    \vspace{1pt}
+}
+
+\newcommand{\itemsBegin}{
+    \begin{itemize}[leftmargin=0.2in, labelsep=0.05in, itemsep=0pt, parsep=1pt, topsep=0pt, partopsep=0pt]
+}
+
+\newcommand{\itemsEnd}{\end{itemize}}
+
+%-------------------------------------------
+% RESUME STARTS HERE
+
+\begin{document}
+
+%----------HEADING----------
+\textbf{\huge \scshape Dalton Luce} \\
+\vspace{2pt}
+\small
+% Address
+\addressConditional
+% Phone
+\phoneConditional
+% Email
+\href{mailto:daltonluce42@gmail.com}{\underline{daltonluce42@gmail.com}}
+\hspace{10pt}
+% LinkedIn
+\href{https://www.linkedin.com/in/dalton-luce/}{\underline{LinkedIn}}
+\hspace{10pt}
+% GitHub
+\href{https://github.com/da-luce}{\underline{GitHub}}
+\vspace{-5pt}
+
+%-----------EDUCATION-----------
+\section{Education}
+
+    %--------Cornell--------
+    \resumeEntry
+        {Cornell University}
+        {Expected 2026}
+        {}
+        {Ithaca, NY}
+
+    \itemsBegin
+        \item Bachelor of Science, Electrical and Computer Engineering/CS minor, 4.028 GPA, Dean’s List all semesters
+        \item James E. Rice Jr. First Year Writing Seminar Award Nominee
+        \item Autobike Project Team, IEEE at Cornell Executive Board, Cornell Outdoor Education Student Instructor, Cornell Club Swim
+        \item Relevant coursework: Calculus for Engineers; Multivariable Calculus for Engineers; Differential Equations for Engineers; Linear Algebra for Engineers; Physics II: Electromagnetism; Physics III: Oscillations, Waves, and Quantum Physics; Data Structures and Functional Programming; Object-Oriented Programming and Data Structures; Data Science for Engineers; Digital Logic and Computer Organization; Embedded Systems
+    \itemsEnd
+
+    %--------High School--------
+    \resumeEntry
+        {Acton-Boxborough Regional High School}
+        {2018 - 2022}
+        {}
+        {Acton, MA}
+
+    \itemsBegin
+        \item National Merit Finalist and Raytheon Scholar
+        \item Unweighted 3.95 of 4.0 GPA; weighted 4.7 of 5.0 GPA, 35 ACT
+        \item Advanced Placement (AP) Scholar with Distinction. AP Scores of 5 in AB Calculus, Biology, Computer Science A, Physics C: Mechanics, and Statistics
+        \item One of only 369 students globally (0.47\%) to earn every point on the AP Computer Science A exam
+        \item Dartmouth Book Award—presented to a junior for outstanding academic achievement and leadership
+        \item National Honor Society, Swim and Dive Captain, Band Vice-President, Marching Band Section Leader, Junior and Senior Class Leader, Student Ambassador
+    \itemsEnd
+
+%----------- EXPERIENCE -----------
+\section{Experience}
+
+    %--------RTX--------
+    \resumeEntry
+        {Software Engineer, Intern}
+        {Summer 2023, Summer 2024}
+        {RTX}
+        {Woburn \& Marlborough, MA}
+
+    \itemsBegin
+        \item Worked on X-Band Radar software. Learned Ada language, ClearCase, Jenkins to support correcting software bugs and new development. Assisted in redevelopment of tool allowing better testing of capabilities of radar software. Participated in daily scrum, sprint planning and backlog refinement
+    \itemsEnd
+
+    %--------Autobike--------
+    \resumeEntry
+        {Autonomous Bicycle Project Team}
+        {2022 - Present}
+        {Cornell University}
+        {Ithaca, NY}
+
+    \itemsBegin
+        \item Member of the Software team (incoming lead for 2024 school year). Reinforcement learning to determine optimal bicycle routing, Docker, Python. Optical flow and computer vision techniques to predict future occupancy grids, OpenCV
+    \itemsEnd
+
+    %--------Tholyl--------
+    \resumeEntry
+        {Software Tester, Intern}
+        {2022}
+        {Tholyl Technologies}
+        {Acton, MA}
+
+    \itemsBegin
+        \item Attended the advanced cohort of a ten-week high-school intensive on Artificial Intelligence taught by Stanford and MIT alumni and graduate students. Completed a simulated project using machine learning techniques to improve public health by predicting a SARS-CoV-2 lineage country of origin using its genome
+    \itemsEnd
+
+%-----------SELECTED ENGINEERING PROGRAMS-----------
+\section{Selected Engineering Programs}
+
+
+    %--------Hajim--------
+    \resumeEntry
+        {Hajim School of Engineering \& Applied Sciences Pre-College Intensive}
+        {Summer 2021}
+        {University of Rochester}
+        {Virtual}
+
+    \itemsBegin
+        \item Attended competitive 20-student cohort three-week intensive studies program completing week-long modules in electrical and computer engineering, data science, and biomedical engineering
+    \itemsEnd
+
+    %--------Luddy--------
+    \resumeEntry
+        {Luddy Precollege Summer Computing \& Engineering Summer Program}
+        {Summer 2021}
+        {Indiana University, Luddy School of Informatics}
+        {Virtual}
+
+    \itemsBegin
+        \item Attended a week-long pre-college exploratory program that covered topics such as intelligent sound-processing, microbiome gene sequencing, 3D modeling
+    \itemsEnd
+
+
+    %--------AI Scholars--------
+    \resumeEntry
+        {AI Scholars}
+        {Spring 2021}
+        {InspiritAI}
+        {Virtual}
+
+    \itemsBegin
+        \item Attended the advanced cohort of a ten-week high-school intensive on Artificial Intelligence taught by Stanford and MIT alumni and graduate students. Completed a simulated project using machine learning techniques to improve public health by predicting a SARS-CoV-2 lineage country of origin using its genome
+    \itemsEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+
+    \itemsBegin
+        \item \textbf{Languages}{: OCaml, C, ADA, Java, Python, JavaScript/HTML/CSS, Bash}
+        \item \textbf{Frameworks}{: Svelte}
+        \item \textbf{Developer Tools}{: Git, Docker, Jenkins, ClearCase}
+    \itemsEnd
+
+%-------------------------------------------
+\end{document}
