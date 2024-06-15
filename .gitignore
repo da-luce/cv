@@ -17,3 +17,6 @@
 
 # Output
 *.pdf
+
+# Other
+.DS_Store
