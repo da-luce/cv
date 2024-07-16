@@ -4,9 +4,20 @@ My Curriculum Vitae (CV) and a cover letter template written using LaTeX.
 
 ## Building
 
+Set permissions:
+
 ```bash
-pdflatex cv.tex
-# or
+chmod +x ./make.sh
+```
+
+Then run:
+
+```bash
+# Public info
+./make.sh
+# Private info
+./make.sh private
+# For cover letter
 pdflatex cover_letter.tex
 ```
 
