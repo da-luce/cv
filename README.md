@@ -4,7 +4,13 @@ My Curriculum Vitae (CV) and a cover letter template written using LaTeX.
 
 ## Building
 
-Set permissions:
+> [!WARNING]
+> Build scripts currently only run on MacOS.
+
+> [!NOTE]
+> Requires `pdflatex` and `imagemagick`.
+
+Set executable permissions:
 
 ```bash
 chmod +x ./make.sh
