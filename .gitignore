@@ -15,8 +15,5 @@
 *.cb2
 .*.lb
 
-# Output
-*.pdf
-
 # Other
 .DS_Store
