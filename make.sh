@@ -8,4 +8,4 @@ else
 fi
 
 # Make cover letter
-pdflatex -jobname=./assets/cover_letter.pdf cover_letter.tex
+pdflatex -jobname=./assets/cover_letter cover_letter.tex

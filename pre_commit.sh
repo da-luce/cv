@@ -8,4 +8,4 @@
 git add ./assets/cv.png
 git add ./assets/cover_letter.png
 git add ./assets/dalton_luce_cv.pdf
-
+git add ./assets/cover_letter.pdf
