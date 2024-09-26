@@ -68,6 +68,21 @@
     \titlerule\vspace{1pt}\scshape\raggedright\large
 }{}{0em}{\vspace{-10pt}}
 
+
+% Command for company
+\newcommand{\company}[1]{
+    \large \textbf{#1} \\
+}
+
+% Command for position with a date and location on the right
+\newcommand{\position}[3]{
+    \hspace{0.5cm} \normalsize \textbf{#1} 
+    \hfill {\small #2}
+    \\
+    \hfill \small \textit{#3}
+    \\
+}
+
 % Ensure that generated PDF is machine readable/ATS parsable
 \pdfgentounicode=1
 
@@ -125,51 +140,29 @@
         {Ithaca, NY}
 
     \itemsBegin
-        \item 4.028 GPA, Dean’s List all semesters
+        \item 4.028 GPA, Dean's List all semesters
         \item James E. Rice Jr. First Year Writing Seminar Award Nominee
-        \item Autobike Project Team Software Lead, IEEE at Cornell Executive Board, Cornell Outdoor Education Student Instructor, Cornell Club Swim
-        \item Relevant coursework: Calculus for Engineers; Multivariable Calculus for Engineers; Differential Equations for Engineers; Linear Algebra for Engineers; Physics II: Electromagnetism; Physics III: Oscillations, Waves, and Quantum Physics; Data Structures and Functional Programming; Object-Oriented Programming and Data Structures; Data Science for Engineers; Digital Logic and Computer Organization; Embedded Systems
-    \itemsEnd
-
-    %--------High School--------
-    \resumeEntry
-        {Acton-Boxborough Regional High School}
-        {2018 - 2022}
-        {High School Diploma}
-        {Acton, MA}
-
-    \itemsBegin
-        \item National Merit Finalist and Raytheon Scholar
-        \item Unweighted 3.95 of 4.0 GPA; weighted 4.7 of 5.0 GPA, 35 ACT
-        \item Advanced Placement (AP) Scholar with Distinction. AP Scores of 5 in AB Calculus, Biology, Computer Science A, Physics C: Mechanics, and Statistics
-        \item One of only 369 students globally (0.47\%) to earn every point on the AP Computer Science A exam
-        \item Dartmouth Book Award—presented to a junior for outstanding academic achievement and leadership
-        \item National Honor Society, Swim and Dive Captain, Band Vice-President, Marching Band Section Leader, Junior and Senior Class Leader, Student Ambassador
+        \item Autobike Project Team Software Lead, IEEE at Cornell Executive Board, Cornell Outdoor Education Student Instructor, Cornell Club Swim Vice President
+        \item Relevant coursework: Differential Equations, Linear Algebra, Functional Programming; OOP and Data Structures, Data Science, Digital Logic and Computer Organization, Embedded Systems
     \itemsEnd
 
 %----------- EXPERIENCE -----------
 \section{Experience}
 
-    %--------RTX 2024--------
-    \resumeEntry
-    {Software Engineer, Intern}
-    {Summer 2024}
-    {RTX}
-    {Marlborough, MA}
+    \company{RTX}
 
-    \itemsBegin
-        \item Used Git and GitLab to develop Perl tooling for DevSecOps software pipeline. Jira administrator, created and configured projects for software teams, Groovy scripting for workflows. Jenkins administrator, updated and debugged CI/CD jobs. Validated and integrated C++ code changes into baseline.
-    \itemsEnd
+    %--------RTX 2024--------
+    \position{Software Engineer, Intern}{Summer 2024}{Marlborough, MA}
+    \begingroup
+    \leftskip=0.5cm
+    Developed Perl tooling in Git and GitLab to enhance a DevSecOps software pipeline serving over one thousand users. Built custom tools to monitor infrastructure stability across hundreds of servers with diverse configurations. Analyzed trends using Grafana to inform data-driven improvements in the DevOps pipeline. Jira administrator, created and configured projects for software teams, leveraging Groovy scripting to automate project processes. Jenkins administrator, updated and debugged CI/CD jobs related to infrastructure stability and code validation. Monitored test failures in product branches and validated C++ code changes, ensuring smooth integration into the baseline and maintaining code integrity across releases.
+    \par
+    \endgroup
 
     %--------RTX 2023--------
-    \resumeEntry
-        {Software Engineer, Intern}
-        {Summer 2023}
-        {RTX}
-        {Woburn, MA}
-
+    \position{Software Engineer, Intern}{Summer 2023}{Woburn, MA}
     \itemsBegin
-        \item Worked on X-Band Radar software. Learned Ada language, ClearCase, Jenkins to support correcting software bugs and new development. Assisted in redevelopment of tool allowing better testing of capabilities of radar software. Participated in daily scrum, sprint planning and backlog refinement.
+        \item Worked on X-Band Radar software with over one million lines of source code. Learned Ada programming language, ClearCase version control, and Jenkins to correct software bugs and new feature development. Assisted in redevelopment of tool allowing better testing of capabilities of radar software. Collaborated closely across teams of system engineers, validation teams, and software developers to ensure accurate code functionality and resolve issues efficiently. Participated in daily scrum, sprint planning and backlog refinement.
     \itemsEnd
 
     %--------Autobike--------
