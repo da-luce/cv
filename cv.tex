@@ -4,50 +4,54 @@
 % License : MIT
 %------------------------
 
- % Conditionally include the private information if `private` true
- % To render with private info: pdflatex '\def\private{} \input{cv.tex}'
-\ifdefined\private
+%-------------------------
+% Conditional Private Information Inclusion
+% If `private` is defined, include private contact info from .private.tex
+% To render with private info: pdflatex '\def\private{} \input{cv.tex}'
+%-------------------------
+\ifdefined\private{}
   \input{.private.tex}
 \fi
 
 \newcommand{\addressConditional}{
-    \ifdefined\private
-        \address
+    \ifdefined\private{}
+        \address{}
     \else
         Boston, MA
     \fi
     \hspace{10pt}
 }
 \newcommand{\phoneConditional}{
-    \ifdefined\private
-        \phone
+    \ifdefined\private{}
+        \phone{}
         \hspace{10pt}
     \fi
 }
 \newcommand{\emailConditional}{
-    \ifdefined\private
+    \ifdefined\private{}
         \href{mailto:\email}{\underline{\email}}
         \hspace{10pt}
     \fi
 }
 
-\documentclass[letterpaper,8pt]{article}
+%-------------------------
+% Document Class and Imports
+%-------------------------
+\documentclass[letterpaper,10pt]{article}
 
 \usepackage[empty]{fullpage}
 \usepackage{titlesec}
 \usepackage[usenames,dvipsnames]{color}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
-\usepackage{fancyhdr}
 \usepackage{multicol}
 \usepackage{tabularx}
+\usepackage[T1]{fontenc}
 \input{glyphtounicode}
 
-\pagestyle{fancy}
-\fancyhf{}
-\fancyfoot{}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
+%-------------------------
+% Page Layout
+%-------------------------
 
 % Adjust margins
 \addtolength{\oddsidemargin}{-0.75in}
@@ -56,20 +60,32 @@
 \addtolength{\topmargin}{-0.8in}
 \addtolength{\textheight}{1.6in}
 
-\urlstyle{same}
+% Text alignment
+\raggedbottom{}
+\raggedright{}
 
-\raggedbottom
-\raggedright
+%-------------------------
+% Formatting
+%-------------------------
+
+% URL and table columns
+\urlstyle{same}
 \setlength{\tabcolsep}{0in}
 
-% Sections formatting
+% Sections
 \titleformat{\section}{
     \vspace{-3pt}
     \titlerule\vspace{1pt}\scshape\raggedright\large
 }{}{0em}{\vspace{-10pt}}
 
+% Use filled circles for bullet points
+\renewcommand\labelitemi{\small\textbullet}
 
-% Command for company
+%-------------------------
+% Custom Commands
+%-------------------------
+
+% Company name
 \newcommand{\company}[2]{
     \vspace{6pt}
     \large \textbf{#1}
@@ -78,7 +94,7 @@
     \\
 }
 
-% Command for position with a date on the right
+% Position and date help
 \newcommand{\position}[2]{
     \vspace{4pt}
     \normalsize \textbf {#1}
@@ -86,12 +102,7 @@
     \\
 }
 
-% Ensure that generated PDF is machine readable/ATS parsable
-\pdfgentounicode=1
-
-% Use filled circles for bullet points
-\renewcommand\labelitemi{\small\textbullet}
-
+% Non-experience entry
 \newcommand{\resumeEntry}[4]{
     \vspace{4pt}
     \large \textbf{#1}
@@ -101,133 +112,127 @@
     \vspace{1pt}
 }
 
+% Bulleted list formatting
 \newcommand{\itemsBegin}{
     \begin{itemize}[leftmargin=0.2in, labelsep=0.05in, itemsep=0pt, parsep=1pt, topsep=0pt, partopsep=0pt]
 }
-
 \newcommand{\itemsEnd}{\end{itemize}}
 
-%-------------------------------------------
-% RESUME STARTS HERE
+%-------------------------
+% Misc
+%-------------------------
 
+% Ensure that generated PDF is machine readable/ATS parsable
+\pdfgentounicode=1
+
+% RESUME STARTS HERE -----------------------------------------------------------
 \begin{document}
 
-%----------HEADING----------
+% HEADING ----------------------------------------------------------------------
 \textbf{\huge \scshape Dalton Luce} \\
 \vspace{2pt}
 \small
-% Address
-\addressConditional
-% Phone
-\phoneConditional
-% Email
-\emailConditional
-% LinkedIn
-\href{https://www.linkedin.com/in/dalton-luce/}{\underline{LinkedIn}}
+\addressConditional{}   % Address
+\phoneConditional{}     % Phone
+\emailConditional{}     % Email
+\href{https://www.linkedin.com/in/dalton-luce/}{\underline{LinkedIn}} % LinkedIn
 \hspace{10pt}
-% GitHub
-\href{https://github.com/da-luce}{\underline{GitHub}}
+\href{https://github.com/da-luce}{\underline{GitHub}}                 % GitHub
 \hspace{10pt}
-% Portfolio Website
-\href{https://daltonluce.com/}{\underline{daltonluce.com}}
+\href{https://daltonluce.com/}{\underline{daltonluce.com}}            % Website
 \vspace{-5pt}
 
-%-----------EDUCATION-----------
+% EDUCATION --------------------------------------------------------------------
 \section{Education}
 
     %--------Cornell--------
-    \resumeEntry
-        {Cornell University}
+    \resumeEntry{Cornell University}
         {Expected 2026}
         {Bachelor of Science in Electrical and Computer Engineering, CS minor}
         {Ithaca, NY}
 
-    \itemsBegin
+    \itemsBegin{}
         \item 4.028 GPA, Dean's List all semesters
         \item James E. Rice Jr. First Year Writing Seminar Award Nominee
         \item Autobike Project Team Software Lead, IEEE at Cornell Executive Board, Cornell Outdoor Education Student Athletic Instructor, Cornell Club Swim Vice President
         \item Relevant coursework: Differential Equations, Linear Algebra, Functional Programming; OOP and Data Structures, Data Science, Digital Logic and Computer Organization, Embedded Systems
-    \itemsEnd
+    \itemsEnd{}
 
-%----------- EXPERIENCE -----------
+% EXPERIENCE ------------------------------------------------------------------
 \section{Experience}
 
+    %--------RTX --------
     \company{RTX}{Woburn \& Marlborough, MA}
 
-    %--------RTX 2024--------
     \position{Software Engineer, Intern}{Summer 2024}
-    \itemsBegin
+    \itemsBegin{}
         \item Developed Perl tooling using Git and GitLab to enhance DevSecOps pipeline serving over 1000 users
         \item Built custom tools to monitor infrastructure stability across hundreds of servers with diverse configurations
         \item Analyzed trends using Grafana to inform data-driven improvements in the DevOps pipeline
         \item Jira administrator: created and configured projects for software teams, leveraged Groovy scripting to automate project processes.
         \item Jenkins administrator, updated and debugged CI/CD jobs related to infrastructure stability and code validation
         \item Monitored test failures in product branches and validated C++ code changes, ensuring smooth integration into the baseline and maintaining code integrity across releases
-    \itemsEnd
+    \itemsEnd{}
 
-    %--------RTX 2023--------
     \position{Software Engineer, Intern}{Summer 2023}
-    \itemsBegin
+    \itemsBegin{}
         \item Worked on X-Band Radar software with 1,000,000+ lines of source code.
         \item Learned Ada programming language, ClearCase version control, and Jenkins to correct software bugs and feature development
         \item Assisted in redevelopment of tool allowing better testing of capabilities of radar software
         \item Collaborated closely across teams of system engineers, validation teams, and software developers to ensure accurate code functionality and resolve issues efficiently
         \item Participated in daily scrum, sprint planning and backlog refinement.
-    \itemsEnd
+    \itemsEnd{}
 
     %--------Autobike--------
     \company{Cornell Autonomous Bicycle Project Team}{Ithaca, MA}
-    \position{Software Subteam Lead}{Summer 2024---Present}
 
-    \itemsBegin
+    \position{Software Subteam Lead}{Summer 2024---Present}
+    \itemsBegin{}
         \item Defining technical goals and allocating tasks tasks for team of 8
         \item Onboarded and mentored new team members, providing training on project architecture and tools
         \item Collaborate with cross-functional teams, including hardware and mechanical subteams, to integrate software solutions into bike
         \item Automated CI/CD pipelines using GitHub Actions, catching code regressions
         \item Set up Docker and ROS infrastructure, streamlining the development and deployment process for autonomous navigation systems
-    \itemsEnd
+    \itemsEnd{}
 
     \position{Navigation Developer}{Fall 2022---Spring 2024}
-    \itemsBegin
+    \itemsBegin{}
         \item contributed to repository with 25k+ lines of source code
         \item Researched optical flow techniques to predict future occupancy grids using OpenCV
         \item Developed Python bicycle dynamics algorithims using numpy to predict future bicycle states
-    \itemsEnd
+    \itemsEnd{}
 
-%-----------SELECTED ENGINEERING PROGRAMS-----------
+% SELECTED ENGINEERING PROGRAMS-------------------------------------------------
 \section{Selected Engineering Programs}
 
 
     %--------Hajim--------
-    \resumeEntry
-        {Hajim School of Engineering \& Applied Sciences Pre-College Intensive}
+    \resumeEntry{Hajim School of Engineering \& Applied Sciences Pre-College Intensive}
         {Summer 2021}
         {University of Rochester}
         {Virtual}
 
-    \itemsBegin
+    \itemsBegin{}
         \item Attended competitive 20-student cohort three-week intensive studies program completing week-long modules in electrical and computer engineering, data science, and biomedical engineering.
-    \itemsEnd
+    \itemsEnd{}
 
     %--------Luddy--------
-    \resumeEntry
-        {Luddy Pre-College Summer Computing \& Engineering Summer Program}
+    \resumeEntry{Luddy Pre-College Summer Computing \& Engineering Summer Program}
         {Summer 2021}
         {Indiana University, Luddy School of Informatics}
         {Virtual}
 
-    \itemsBegin
+    \itemsBegin{}
         \item Attended a week-long pre-college exploratory program that covered topics such as intelligent sound-processing, microbiome gene sequencing, 3D modeling.
-    \itemsEnd
+    \itemsEnd{}
 
-%-----------TECHNICAL SKILLS-----------
+% TECHNICAL SKILLS -------------------------------------------------------------
 \section{Technical Skills}
 
-    \itemsBegin
+    \itemsBegin{}
         \item \textbf{Languages}{: OCaml, C, C++, ADA, Java, Python, JavaScript/HTML/CSS, Bash}
         \item \textbf{Frameworks}{: ROS, Svelte}
         \item \textbf{Developer Tools}{: Git, Docker, Jenkins, Grafana, ClearCase}
-    \itemsEnd
+    \itemsEnd{}
 
-%-------------------------------------------
 \end{document}
