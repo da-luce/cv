@@ -88,25 +88,27 @@
 % Company name
 \newcommand{\company}[2]{
     \vspace{6pt}
-    \large \textbf{#1}
+    {\large \textbf{#1}}
     \hfill
-    {\small {#2}}
+    {\normalsize {#2}}
     \\
 }
 
 % Position and date help
 \newcommand{\position}[2]{
     \vspace{4pt}
-    \normalsize \textbf {#1}
-    \hfill {\small \textit{#2}}
+    {\normalsize \textbf {#1}}
+    \hfill
+    {\normalsize \textit{#2}}
     \\
 }
 
 % Non-experience entry
 \newcommand{\resumeEntry}[4]{
     \vspace{4pt}
-    \large \textbf{#1}
-    \normalsize \hfill #2
+    {\large \textbf{#1}}
+    \hfill
+    {\normalsize #2}
     \\
     \textit{#3} \hfill \textit{#4}
     \vspace{1pt}
@@ -184,7 +186,7 @@
     \itemsEnd{}
 
     %--------Autobike--------
-    \company{Cornell Autonomous Bicycle Project Team}{Ithaca, MA}
+    \company{Cornell Autonomous Bicycle Project Team}{Ithaca, NY}
 
     \position{Software Subteam Lead}{Summer 2024---Present}
     \itemsBegin{}
@@ -201,6 +203,17 @@
         \item Researched optical flow techniques to predict future occupancy grids using OpenCV
         \item Developed Python bicycle dynamics algorithims using numpy to predict future bicycle states
     \itemsEnd{}
+
+    %--------Tholyl--------
+    \company{Tholyl Technologies}{Acton, MA}
+
+    \position{Software Tester, Intern}{2022}
+    \itemsBegin
+        \item Tested full stack application job board for local students
+        \item Reported bugs, provided insight into development of software product
+        \item Created and managed startup website
+    \itemsEnd
+
 
 % SELECTED ENGINEERING PROGRAMS-------------------------------------------------
 \section{Selected Engineering Programs}
