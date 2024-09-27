@@ -36,3 +36,8 @@ pdflatex cover_letter.tex
 ### Cover Letter
 
 ![Cover Letter Image](./assets/cover_letter.png)
+
+## To be Implemented
+
+- [ ] A more standard build process that works on any OS
+- [ ] GitHub action to only generate new PDFs/Images on `main` to reduce repo size
