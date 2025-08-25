@@ -2,16 +2,16 @@
 # FIXME: name of pdf shouldn't be magic
 magick \
     -density 300 \
-    ./assets/dalton_luce_cv.pdf \
+    ./artifacts/dalton_luce_cv.pdf \
     -quality 100 \
     -flatten \
     -sharpen 0x1.0 \
-    ./assets/cv.png
+    ./artifacts/cv.png
 
 magick \
     -density 300 \
-    ./assets/cover_letter.pdf \
+    ./artifacts/cover_letter.pdf \
     -quality 100 \
     -flatten \
     -sharpen 0x1.0 \
-    ./assets/cover_letter.png
+    ./artifacts/cover_letter.png
