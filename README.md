@@ -4,40 +4,40 @@ My Curriculum Vitae (CV) and a cover letter template written using LaTeX.
 
 ## Building
 
-> [!WARNING]
-> Build scripts currently only run on MacOS.
-
 > [!NOTE]
-> Requires `pdflatex` and `imagemagick`.
+> Requires `pdflatex` and `imagemagick` (for image generation).
 
-Set executable permissions:
+1. Install dependencies:
 
-```bash
-chmod +x ./make.sh
-```
+    ```shell
+    make install
+    ```
 
-Then run:
+    ```shell
+    source .venv/bin/activate
+    ````
 
-```bash
-# Public info
-./make.sh
-# Private info
-./make.sh private
-# For cover letter
-pdflatex cover_letter.tex
-```
+2. Build all outputs
+
+    ```shell
+    # Build everything (CV + cover letter + images)
+    make all
+    ```
+
+    To view other available targets, run `make help`.
 
 ## Screenshots
 
 ### Curriculum Vitae
 
-![CV Image](./assets/cv.png)
+![CV Image](./dist/images/cv.png)
 
 ### Cover Letter
 
-![Cover Letter Image](./assets/cover_letter.png)
+![Cover Letter Image](./dist/images/cover_letter.png)
 
 ## To be Implemented
 
-- [ ] A more standard build process that works on any OS
 - [ ] GitHub action to only generate new PDFs/Images on `main` to reduce repo size
+- [x] A more standard build process that works on any OS (✅ Makefile added)
+- [x] Migrate from requirements.txt to pyproject.toml for Python dependencies

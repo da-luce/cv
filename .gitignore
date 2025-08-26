@@ -1,8 +1,14 @@
 # Private information
-.private.tex
+src/.private.tex
 
 # Core latex/pdflatex auxiliary files:
 build/
+*.aux
+*.fls
+*.fdb_latexmk
+*.log
+*.gz
+*.out
 
 # Other
 .DS_Store
@@ -11,3 +17,12 @@ build/
 __pycache__/
 .pytest_cache/
 venv/
+.env
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
