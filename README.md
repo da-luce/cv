@@ -5,9 +5,15 @@ My Curriculum Vitae (CV) and a cover letter template written using LaTeX.
 ## Building
 
 > [!NOTE]
-> Requires `pdflatex` and `imagemagick` (for image generation).
+> Requires `pdflatex` and `imagemagick` (for image generation). On macOS, you can install them with:
+>
+> ```shell
+> brew install basictex imagemagick
+> ```
+>
+> Then reload your terminal to ensure the binaries are in your PATH.
 
-1. Install dependencies:
+1. Install Python dependencies for testing:
 
     ```shell
     make install
