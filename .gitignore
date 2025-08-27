@@ -10,6 +10,9 @@ build/
 *.gz
 *.out
 
+# Distributed files
+dist/
+
 # Other
 .DS_Store
 
