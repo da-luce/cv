@@ -1,12 +1,14 @@
-# 📄 CV
+# 📄 CV [![Deploy Resume](https://github.com/da-luce/cv/actions/workflows/deploy.yml/badge.svg)](https://github.com/da-luce/cv/actions/workflows/deploy.yml) [![PDF](https://img.shields.io/badge/PDF-blue?style=flat)](https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/pdfs/dalton_luce_cv.pdf)
 
 My [Curriculum Vitae](https://en.wikipedia.org/wiki/Curriculum_vitae) (CV) and cover letter template, written in $\LaTeX$ ([learn more](https://www.latex-project.org/)).
 
-## Files
+<br>
+
+👉 **[Download CV PDF ↗](https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/pdfs/dalton_luce_cv.pdf)**
+
+## Screenshots
 
 ### Curriculum Vitae
-
-**[⬇️ Download CV PDF](https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/pdfs/dalton_luce_cv.pdf)**
 
 ![CV Image](https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/images/cv.png)
 
@@ -83,7 +85,7 @@ My [Curriculum Vitae](https://en.wikipedia.org/wiki/Curriculum_vitae) (CV) and c
 ## To be Implemented
 
 * [ ] Improve testing and add to `deploy.yml` action
-* [ ] Add Terraform template for AWS setup
+* [x] Add Terraform template for AWS setup
 * [x] Add details on AWS usage in README
 * [x] GitHub action to only generate new PDFs/Images on `main` to reduce repo size
 * [x] A more standard build process that works on any OS (✅ Makefile added)
