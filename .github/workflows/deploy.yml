@@ -1,0 +1,36 @@
+name: Deploy Resume
+
+on:
+    push:
+        branches: [main]
+    workflow_dispatch:
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout source
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: Install dependencies
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install -y make texlive-latex-base texlive-latex-extra
+
+            - name: Build resume
+              run: make all
+
+            - name: Upload resume to S3
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  aws-region: ${{ secrets.AWS_REGION }}
+
+            - name: Copy PDF + images to S3
+              run: |
+                  aws s3 cp dist/pdfs/ s3://${{ secrets.AWS_S3_BUCKET }}/pdfs/ --recursive --acl public-read
+                  aws s3 cp images/ s3://${{ secrets.AWS_S3_BUCKET }}/images/ --recursive --acl public-read
