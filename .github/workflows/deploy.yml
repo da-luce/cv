@@ -18,7 +18,7 @@ jobs:
             - name: Install dependencies
               run: |
                   sudo apt-get update
-                  sudo apt-get install -y make texlive-latex-base texlive-latex-extra
+                  sudo apt-get install -y make texlive-latex-base texlive-latex-extra imagemagick
 
             - name: Build resume
               run: make all
@@ -32,5 +32,5 @@ jobs:
 
             - name: Copy PDF + images to S3
               run: |
-                  aws s3 cp dist/pdfs/ s3://${{ secrets.AWS_S3_BUCKET }}/pdfs/ --recursive --acl public-read
-                  aws s3 cp images/ s3://${{ secrets.AWS_S3_BUCKET }}/images/ --recursive --acl public-read
+                  aws s3 cp dist/pdfs/ s3://${{ secrets.AWS_S3_BUCKET }}/pdfs/ --recursive
+                  aws s3 cp dist/images/ s3://${{ secrets.AWS_S3_BUCKET }}/images/ --recursive

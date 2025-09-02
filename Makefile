@@ -43,12 +43,13 @@ cover-letter: $(DIST_DIR)/pdfs
 	cp $(BUILD_DIR)/cover_letter.pdf $(DIST_DIR)/pdfs/
 
 # Generate images from PDFs
+# FIXME: currently using deprecated "convert" since ubuntu GitHub runners only have access to IMv6
 images: $(DIST_DIR)/images
-	@if command -v magick >/dev/null 2>&1; then \
-		magick -density 300 $(DIST_DIR)/pdfs/dalton_luce_cv.pdf -quality 100 -flatten -sharpen 0x1.0 $(DIST_DIR)/images/cv.png; \
-		magick -density 300 $(DIST_DIR)/pdfs/cover_letter.pdf -quality 100 -flatten -sharpen 0x1.0 $(DIST_DIR)/images/cover_letter.png; \
+	@if command -v convert >/dev/null 2>&1; then \
+		convert -density 300 $(DIST_DIR)/pdfs/dalton_luce_cv.pdf -quality 100 -flatten -sharpen 0x1.0 $(DIST_DIR)/images/cv.png; \
+		convert -density 300 $(DIST_DIR)/pdfs/cover_letter.pdf -quality 100 -flatten -sharpen 0x1.0 $(DIST_DIR)/images/cover_letter.png; \
 	else \
-		echo "ImageMagick not found. Please install ImageMagick to generate images."; \
+		echo "Imageconvert not found. Please install Imageconvert to generate images."; \
 	fi
 
 # Clean build directory

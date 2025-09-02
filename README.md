@@ -2,6 +2,18 @@
 
 My Curriculum Vitae (CV) and a cover letter template written using LaTeX.
 
+## Files
+
+### Curriculum Vitae
+
+![CV Image](https://dalton-cv.s3.us-east-1.amazonaws.com/images/cv.png)
+
+[⬇️ Download CV PDF](https://dalton-cv.s3.us-east-1.amazonaws.com/pdfs/dalton_luce_cv.pdf)
+
+### Cover Letter
+
+![Cover Letter Image](https://dalton-cv.s3.us-east-1.amazonaws.com/images/cover_letter.png)
+
 ## Building
 
 > [!NOTE]
@@ -32,18 +44,10 @@ My Curriculum Vitae (CV) and a cover letter template written using LaTeX.
 
     To view other available targets, run `make help`.
 
-## Screenshots
-
-### Curriculum Vitae
-
-![CV Image](./dist/images/cv.png)
-
-### Cover Letter
-
-![Cover Letter Image](./dist/images/cover_letter.png)
-
 ## To be Implemented
 
-- [ ] GitHub action to only generate new PDFs/Images on `main` to reduce repo size
-- [x] A more standard build process that works on any OS (✅ Makefile added)
-- [x] Migrate from requirements.txt to pyproject.toml for Python dependencies
+* [ ] Add Terraform template for AWS setup
+* [ ] Add details on AWS usage in README
+* [x] GitHub action to only generate new PDFs/Images on `main` to reduce repo size
+* [x] A more standard build process that works on any OS (✅ Makefile added)
+* [x] Migrate from requirements.txt to pyproject.toml for Python dependencies

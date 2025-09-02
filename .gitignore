@@ -19,6 +19,7 @@ dist/
 # Python
 __pycache__/
 .pytest_cache/
+.venv/
 venv/
 .env
 *.egg-info/
