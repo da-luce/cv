@@ -9,6 +9,7 @@ build/
 *.log
 *.gz
 *.out
+*.pdf
 
 # Distributed files
 dist/
