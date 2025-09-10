@@ -4,7 +4,7 @@ My [Curriculum Vitae](https://en.wikipedia.org/wiki/Curriculum_vitae) (CV) and c
 
 Is it overengineered? _For most, probably yes._ <br>
 Is it perfect for automation enthusiasts? _Absolutely._ <br>
-Maybe I can convince you to become one too—_[here’s why](#why-this-setup)._
+Maybe I can convince you to become one too—_[here's why](#why-this-setup)._
 
 <br>
 
