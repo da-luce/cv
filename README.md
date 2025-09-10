@@ -1,4 +1,17 @@
-# 📄 CV [![Deploy Resume](https://github.com/da-luce/cv/actions/workflows/deploy.yml/badge.svg)](https://github.com/da-luce/cv/actions/workflows/deploy.yml) [![PDF](https://img.shields.io/badge/PDF-blue?style=flat)](https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/pdfs/dalton_luce_cv.pdf)
+# 📄 CV [![Deploy Resume](https://github.com/da-luce/cv/actions/workflows/deploy.yml/badge.svg)](https://github.com/da-luce/cv/actions/workflows/deploy.yml)
+
+<br>
+
+<p align="center">
+  <a href="https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/pdfs/dalton_luce_cv.pdf">
+    <img src="https://img.shields.io/badge/📄%20View_PDF-blue?style=for-the-badge&logo=&logoColor=white" alt="View PDF">
+  </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/images/cv.png">
+    <img src="https://img.shields.io/badge/🌄%20View_PNG-blue?style=for-the-badge&logo=&logoColor=white" alt="View PNG">
+  </a>
+</p>
+
+<br>
 
 My [Curriculum Vitae](https://en.wikipedia.org/wiki/Curriculum_vitae) (CV) and cover letter template, written in $\LaTeX$ ([learn more](https://www.latex-project.org/)). All artifacts (PDFs and preview images) are automatically built using [GitHub Actions](https://github.com/features/actions) and uploaded to an [AWS S3](https://aws.amazon.com/s3/) bucket. A [Terraform](https://developer.hashicorp.com/terraform) configuration and [instructions](#deploying-artifacts-to-aws) are included below if you want to set it up yourself.
 
@@ -6,20 +19,13 @@ Is it overengineered? _For most, probably yes._ <br>
 Is it perfect for automation enthusiasts? _Absolutely._ <br>
 Maybe I can convince you to become one too—_[here's why](#why-this-setup)._
 
-<br>
-
-👉 **[Download CV PDF ↗](https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/pdfs/dalton_luce_cv.pdf)**
-
 ## Screenshots
 
-> [!NOTE]
-> The images below are cached and may be several hours to days out of date. [Download the PDF](https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/pdfs/dalton_luce_cv.pdf) for the latest version.
-
-### Curriculum Vitae
+### Curriculum Vitae &nbsp; [![PDF](https://img.shields.io/badge/PDF-blue?style=flat)](https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/pdfs/dalton_luce_cv.pdf)
 
 ![CV Image](https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/images/cv.png)
 
-### Cover Letter
+### Cover Letter &nbsp; [![PDF](https://img.shields.io/badge/PDF-blue?style=flat)](https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/pdfs/cover_letter.pdf)
 
 ![Cover Letter Image](https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/images/cover_letter.png)
 
