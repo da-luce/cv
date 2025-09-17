@@ -6,12 +6,15 @@ import pytest
 import fitz
 from PIL import Image
 import colorsys
+from pdfminer.high_level import extract_pages
+from pdfminer.layout import LTTextBox, LTTextLine, LTChar
+
 
 # ---------- Configuration ----------
 PDF_PATH = Path("dist/pdfs/dalton_luce_cv.pdf")
 MAX_PAGES = 1  # Max number of pages allowed in the PDF
-MIN_FONT = 14  # TODO: Minimum font size allowed in points
-MAX_FONT = 28  # TODO: Maximum font size allowed in points
+MIN_FONT = 8  # Minimum font size allowed in points
+MAX_FONT = 21  # aximum font size allowed in points
 ENFORCE_HTTPS = True  # Require all links to use HTTPS (all links validated anyway)
 MAX_FILE_SIZE_KB = 500  # Max allowed PDF file size in kilobytes
 NO_IMAGES = True  # PDF must contain no images if True
@@ -124,21 +127,43 @@ def test_pdf_file_size():
     ), f"CV file size is {file_size_kb:.1f}KB (should be ≤{MAX_FILE_SIZE_KB}KB)"
 
 
-def test_pdf_font_sizes():
+def test_pdf_font_sizes(min_size=MIN_FONT, max_size=MAX_FONT):
     """Test that all fonts in the PDF are within the specified size range."""
-    pdf = PdfReader(PDF_PATH)
-    font_sizes = set()
+    errors = []
 
-    for page in pdf.pages:
-        if "/Font" in page.get("/Resources", {}):
-            # Extract text with font information
-            text = page.extract_text()
-            # Note: pypdf doesn't easily extract font sizes, so we'll do a basic check
-            # This is a simplified implementation - in practice, you might need more sophisticated PDF parsing
+    for page_layout in extract_pages(PDF_PATH):
+        page_num = page_layout.pageid
+        for element in page_layout:
+            if isinstance(element, (LTTextBox, LTTextLine)):
+                bad_chars = []
+                bad_sizes = []
+                for text_line in element:
+                    for char in text_line:
+                        if isinstance(char, LTChar):
+                            font_size = char.size
+                            if font_size < min_size or font_size > max_size:
+                                bad_chars.append(char.get_text())
+                                bad_sizes.append(font_size)
 
-    # For now, we'll assume the test passes if we can read the PDF
-    # A more complete implementation would require additional PDF parsing libraries
-    assert True, "Font size validation requires more sophisticated PDF parsing"
+                if bad_chars:
+                    bad_text = "".join(bad_chars).strip()
+                    # Find whether too small or too big, or both in the same snippet
+                    too_small = any(size < min_size for size in bad_sizes)
+                    too_big = any(size > max_size for size in bad_sizes)
+
+                    size_status = []
+                    if too_small:
+                        size_status.append(f"smaller than minimum {min_size}")
+                    if too_big:
+                        size_status.append(f"larger than maximum {max_size}")
+                    size_status_str = " and ".join(size_status)
+
+                    errors.append(
+                        f"Page {page_num}: Text with font size {size_status_str}: '{bad_text}'"
+                    )
+
+    if errors:
+        raise AssertionError("\n".join(errors))
 
 
 def test_pdf_links_https():
@@ -313,6 +338,16 @@ def test_pdf_structure():
     # Test that PDF has metadata
     metadata = pdf.metadata
     assert metadata is not None, "PDF should have metadata"
+
+    author = metadata.get("/Author")
+    assert (
+        author is not None and author.strip() != ""
+    ), "PDF should have a valid Author metadata field"
+
+    title = metadata.get("/Title")
+    assert (
+        title is not None and title.strip() != ""
+    ), "PDF should have a valid Title metadata field"
 
     # Test that we can extract text from all pages
     for page_num, page in enumerate(pdf.pages):
