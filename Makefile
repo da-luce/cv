@@ -56,26 +56,7 @@ images: $(DIST_DIR)/images
 clean:
 	rm -rf $(BUILD_DIR)
 
-
-# Install Python dependencies in a venv
-install:
-	@if [ ! -d .venv ]; then \
-		echo "Creating virtual environment..."; \
-		python3 -m venv .venv; \
-	fi
-	@echo "Installing dependencies..."
-	@. .venv/bin/activate; \
-	if [ -f pyproject.toml ]; then \
-		pip install --upgrade pip; \
-		pip install -e .; \
-	else \
-		echo "No dependency file found"; \
-	fi
-	@echo ""
-	@echo "✅ Next steps:"
-	@echo "   source .venv/bin/activate"
-	@echo "   (or run commands with .venv/bin/python, e.g. .venv/bin/python -m pytest)"
-
 # Run tests
 test:
-	python -m pytest test/test.py
+	# See https://github.com/da-luce/cvlint
+	cvlint check dist/pdfs/dalton_luce_cv.pdf

@@ -3,6 +3,8 @@ name: Deploy Resume
 on:
     push:
         branches: [main]
+    pull_request:
+      branches: [main]
     workflow_dispatch:
 
 env:
@@ -30,7 +32,25 @@ jobs:
             - name: Build resume
               run: make all
 
+            # Test!
+            - name: Clone cvlint repo
+              run: git clone https://github.com/da-luce/cvlint.git
+
+            - name: Install cvlint
+              run: |
+                cd cvlint
+                curl -sSL https://install.python-poetry.org | python3 -
+                export PATH="$HOME/.local/bin:$PATH"
+                poetry install
+
+              # TODO: this is ugly
+            - name: Run tests
+              run: |
+                cd cvlint
+                poetry run cvlint check ../dist/pdfs/dalton_luce_cv.pdf
+
             - name: Upload resume to S3
+              if: github.event_name == 'push'
               uses: aws-actions/configure-aws-credentials@v4
               with:
                   aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -38,6 +58,7 @@ jobs:
                   aws-region: ${{ secrets.AWS_REGION }}
 
             - name: Copy PDF + images to S3
+              if: github.event_name == 'push'
               run: |
                   aws s3 cp dist/pdfs/ s3://${{ secrets.AWS_S3_BUCKET }}/pdfs/ --recursive
                   aws s3 cp dist/images/ s3://${{ secrets.AWS_S3_BUCKET }}/images/ --recursive
@@ -45,6 +66,7 @@ jobs:
             # Purge GitHub's Camo CDN cache so updated resume/cover letter images show up immediately
             # Docs: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-anonymized-urls#removing-an-image-from-camos-cache
             - name: Clear GitHub Camo cache
+              if: github.event_name == 'push'
               run: |
                   curl -X PURGE "${RESUME_IMAGE_URL}"
                   curl -X PURGE "${COVER_LETTER_IMAGE_URL}"
