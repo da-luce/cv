@@ -58,5 +58,9 @@ clean:
 
 # Run tests
 test:
-	# See https://github.com/da-luce/cvlint
+	@if ! command -v cvlint >/dev/null 2>&1; then \
+		echo "Error: cvlint is not installed or not in PATH."; \
+		echo "Please install cvlint by following instructions at https://github.com/da-luce/cvlint"; \
+		exit 1; \
+	fi
 	cvlint check dist/pdfs/dalton_luce_cv.pdf

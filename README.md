@@ -1,6 +1,7 @@
 # 📄 CV [![Deploy Resume](https://github.com/da-luce/cv/actions/workflows/deploy.yml/badge.svg)](https://github.com/da-luce/cv/actions/workflows/deploy.yml)
 
 <br>
+<br>
 
 <p align="center">
   <a href="https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/pdfs/dalton_luce_cv.pdf">
@@ -12,8 +13,9 @@
 </p>
 
 <br>
+<br>
 
-My [Curriculum Vitae](https://en.wikipedia.org/wiki/Curriculum_vitae) (CV) and cover letter template, written in $\LaTeX$ ([learn more](https://www.latex-project.org/)). All artifacts (PDFs and preview images) are automatically built using [GitHub Actions](https://github.com/features/actions) and uploaded to an [AWS S3](https://aws.amazon.com/s3/) bucket. A [Terraform](https://developer.hashicorp.com/terraform) configuration and [instructions](#deploying-artifacts-to-aws) are included below if you want to set it up yourself.
+My [Curriculum Vitae](https://en.wikipedia.org/wiki/Curriculum_vitae) and cover letter template, written in $\LaTeX$. All artifacts (PDFs and preview images) are automatically built using GitHub Actions and uploaded to an AWS S3 bucket. A Terraform configuration and [instructions](#deploying-artifacts-to-aws) are included below if you want a similar settup for your own resume.
 
 Is it overengineered? _For most, probably yes._ <br>
 Is it perfect for automation enthusiasts? _Absolutely._ <br>
@@ -59,9 +61,6 @@ Maybe I can convince you to become one too—_[here's why](#why-this-setup)._
 
     To view other available targets, run `make help`.
 
-> [!NOTE]
-> The Makefile builds PDFs and images locally. PDFs and images are uploaded to an [S3](https://aws.amazon.com/s3/) bucket via a [GitHub Action](./.github/workflows/deploy.yml) for easy access.  Storage cost is extremely low: for a 2 MB resume and cover letter, it would be just over a cent for three **years**.
-
 ## Deploying Artifacts to AWS
 
 Follow these steps to set up your AWS account and configure GitHub Actions for automatic CV deployment.
@@ -101,22 +100,13 @@ Follow these steps to set up your AWS account and configure GitHub Actions for a
 
    Once the secrets are added, the provided [workflow](./.github/workflows/deploy.yml) will automatically build your CV PDFs and preview images, then upload them to the configured S3 bucket whenever you push changes to the repository.
 
-> **Note:** S3 storage is extremely cheap—effectively pennies for years of CV and cover letter artifacts.
-
 ## Why This Setup?
 
-| Component     | Why?                                                                                                                                                                                                    |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Git**       | Tracks every change in fine detail—much more granular than cloud-hosted solutions like Google Drive. Supports collaboration, safe experimentation, and integrates seamlessly with automation workflows. |
-| **LaTeX**     | Produces professional, highly customizable PDFs. Standard in math and engineering fields, and easy to track with Git.                                                                                   |
-| **AWS S3**    | Cheap, reliable hosting. Stores the latest PDFs and images outside the repo (avoiding repo bloat) and provides a stable URL accessible by anyone on the internet.                                       |
-| **Terraform** | Makes AWS setup reproducible and version-controlled. Anyone (including future you) can recreate the environment easily.                                                                                 |
-
-## To be Implemented
-
-* [ ] Improve testing and add to `deploy.yml` action
-* [x] Add Terraform template for AWS setup
-* [x] Add details on AWS usage in README
-* [x] GitHub action to only generate new PDFs/Images on `main` to reduce repo size
-* [x] A more standard build process that works on any OS (✅ Makefile added)
-* [x] Migrate from requirements.txt to pyproject.toml for Python dependencies
+| Component                                                  | Why?                                                                                                                                                                                                    |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [**Git**](https://git-scm.com/)                            | Tracks every change in fine detail—much more granular than cloud-hosted solutions like Google Drive. Supports collaboration, safe experimentation, and integrates seamlessly with automation workflows. |
+| [**LaTeX**](https://www.latex-project.org/)                | Produces professional, highly customizable PDFs. Standard in math and engineering fields, and easy to track with Git.                                                                                   |
+| [**AWS S3**](https://aws.amazon.com/s3/)                   | Cheap (pennies for 2 MB of assets) and reliable hosting. Stores the latest PDFs and images outside the repo (avoiding repo bloat) and provides a stable URL accessible by anyone on the internet.       |
+| [**Terraform**](https://developer.hashicorp.com/terraform) | Makes AWS setup reproducible and version-controlled. Anyone (including future you) can recreate the environment easily.                                                                                 |
+| [**GitHub Actions**](https://github.com/features/actions)  | Automates the build, test, and deployment workflow on every push. Ensures your CV and cover letter are always up-to-date without manual intervention, seamlessly integrating with Git and AWS S3.       |
+| [**cvlint**](https://github.com/da-luce/cvlint)            | Automatically checks your CV for formatting and content issues.                                                                                                                                         |
