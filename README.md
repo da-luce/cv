@@ -33,30 +33,22 @@ Maybe I can convince you to become one too—_[here's why](#why-this-setup)._
 
 ## Building
 
-> [!NOTE]
-> Requires `pdflatex` and `imagemagick` (for image generation). On macOS, you can install them with:
->
-> ```shell
-> brew install basictex imagemagick
-> ```
->
-> Then reload your terminal to ensure the binaries are in your PATH.
-
-1. Install Python dependencies for testing:
+1. Pull the pre-built Docker image
 
     ```shell
-    make install
+    docker pull daluce/cv:latest
     ```
 
-    ```shell
-    source .venv/bin/activate
-    ````
-
-2. Build all outputs
+2. Start a shell inside the container
 
     ```shell
-    # Build everything (CV + cover letter + images)
-    make all
+    make enter
+    ```
+
+3. Build and test all outputs
+
+    ```shell
+    make all && make test
     ```
 
     To view other available targets, run `make help`.
@@ -98,7 +90,8 @@ Follow these steps to set up your AWS account and configure GitHub Actions for a
 
 5. See it in action
 
-   Once the secrets are added, the provided [workflow](./.github/workflows/deploy.yml) will automatically build your CV PDFs and preview images, then upload them to the configured S3 bucket whenever you push changes to the repository.
+  Once the secrets are added, the provided [workflow](./.github/workflows/deploy.yml) will automatically build your CV PDFs and preview images, then upload them to the configured S3 bucket whenever you push changes to the repository.
+  You can also run `make release` to upload artifacts to S3.
 
 ## Why This Setup?
 
@@ -110,3 +103,4 @@ Follow these steps to set up your AWS account and configure GitHub Actions for a
 | [**Terraform**](https://developer.hashicorp.com/terraform) | Makes AWS setup reproducible and version-controlled. Anyone (including future you) can recreate the environment easily.                                                                                 |
 | [**GitHub Actions**](https://github.com/features/actions)  | Automates the build, test, and deployment workflow on every push. Ensures your CV and cover letter are always up-to-date without manual intervention, seamlessly integrating with Git and AWS S3.       |
 | [**cvlint**](https://github.com/da-luce/cvlint)            | Automatically checks your CV for formatting and content issues.                                                                                                                                         |
+| [**Docker**](https://www.docker.com/)                      | Encapsulates all dependencies and tools needed to build your CV into one portable image, guaranteeing the build runs exactly the same anywhere.                                                         |

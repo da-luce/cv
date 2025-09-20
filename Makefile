@@ -83,3 +83,6 @@ release:
 	# Purge GitHub Camo image cache, so updated images show up in README immediately
 	curl -X PURGE "$(CV_GITHUB_CACHE_URL)"
 	curl -X PURGE "$(COVER_GITHUB_CACHE_URL)"
+
+enter:
+	docker run --rm -it -v "$$(pwd)":/cv -w /cv daluce/cv:latest /bin/bash
