@@ -6,17 +6,16 @@ on:
     pull_request:
       branches: [main]
     workflow_dispatch:
-
-env:
-    # These are GitHub Camo image proxy URLs.
-    # To obtain them: paste the raw S3 image link into a GitHub Markdown file (README, issue, etc.),
-    # let GitHub render it, then right-click → "Copy image address".
-    RESUME_IMAGE_URL: "https://camo.githubusercontent.com/19e0bf2e0d1d9b58f0bd2a4bf66b214f817d5ae7e72ff4e3684b8b15522be23f/68747470733a2f2f64616c746f6e2d63762d6172746966616374732e73332e75732d656173742d312e616d617a6f6e6177732e636f6d2f696d616765732f63762e706e67"
-    COVER_LETTER_IMAGE_URL: "https://camo.githubusercontent.com/31c147493e3d013bd48fcbeda87b802e2a8012a64faf6dc324f640ba7eec4f24/68747470733a2f2f64616c746f6e2d63762d6172746966616374732e73332e75732d656173742d312e616d617a6f6e6177732e636f6d2f696d616765732f636f7665725f6c65747465722e706e67"
-
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
+        container:
+          image: daluce/cv:latest
+          options: --entrypoint /bin/sh
+          env:
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            AWS_REGION: ${{ secrets.AWS_REGION }}
 
         steps:
             - name: Checkout source
@@ -24,49 +23,12 @@ jobs:
               with:
                   fetch-depth: 0
 
-            - name: Install dependencies
-              run: |
-                  sudo apt-get update
-                  sudo apt-get install -y make texlive-latex-base texlive-latex-extra imagemagick
-
             - name: Build resume
               run: make all
 
-            # Test!
-            - name: Clone cvlint repo
-              run: git clone https://github.com/da-luce/cvlint.git
-
-            - name: Install cvlint
-              run: |
-                cd cvlint
-                curl -sSL https://install.python-poetry.org | python3 -
-                export PATH="$HOME/.local/bin:$PATH"
-                poetry install
-
-              # TODO: this is ugly
-            - name: Run tests
-              run: |
-                cd cvlint
-                poetry run cvlint check ../dist/pdfs/dalton_luce_cv.pdf
-
-            - name: Upload resume to S3
+            - name: Test
+              run: make test
+            - name: Upload PDFs and images to S3
+            # Only upload on pushes to main branch, not PRs
               if: github.event_name == 'push'
-              uses: aws-actions/configure-aws-credentials@v4
-              with:
-                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                  aws-region: ${{ secrets.AWS_REGION }}
-
-            - name: Copy PDF + images to S3
-              if: github.event_name == 'push'
-              run: |
-                  aws s3 cp dist/pdfs/ s3://${{ secrets.AWS_S3_BUCKET }}/pdfs/ --recursive
-                  aws s3 cp dist/images/ s3://${{ secrets.AWS_S3_BUCKET }}/images/ --recursive
-
-            # Purge GitHub's Camo CDN cache so updated resume/cover letter images show up immediately
-            # Docs: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-anonymized-urls#removing-an-image-from-camos-cache
-            - name: Clear GitHub Camo cache
-              if: github.event_name == 'push'
-              run: |
-                  curl -X PURGE "${RESUME_IMAGE_URL}"
-                  curl -X PURGE "${COVER_LETTER_IMAGE_URL}"
+              run: make release

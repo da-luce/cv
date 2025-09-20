@@ -25,7 +25,7 @@ Maybe I can convince you to become one too—_[here's why](#why-this-setup)._
 
 ### Curriculum Vitae &nbsp; [![PDF](https://img.shields.io/badge/PDF-blue?style=flat)](https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/pdfs/dalton_luce_cv.pdf)
 
-![CV Image](https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/images/cv.png)
+![CV Image](https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/images/dalton_luce_cv.png)
 
 ### Cover Letter &nbsp; [![PDF](https://img.shields.io/badge/PDF-blue?style=flat)](https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/pdfs/cover_letter.pdf)
 
