@@ -7,7 +7,7 @@
   <a href="https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/pdfs/dalton_luce_cv.pdf">
     <img src="https://img.shields.io/badge/📄%20View_PDF-blue?style=for-the-badge&logo=&logoColor=white" alt="View PDF">
   </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/images/cv.png">
+  <a href="https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/images/dalton_luce_cv.png">
     <img src="https://img.shields.io/badge/🌄%20View_PNG-blue?style=for-the-badge&logo=&logoColor=white" alt="View PNG">
   </a>
 </p>
@@ -33,19 +33,13 @@ Maybe I can convince you to become one too—_[here's why](#why-this-setup)._
 
 ## Building
 
-1. Pull the pre-built Docker image
-
-    ```shell
-    docker pull daluce/cv:latest
-    ```
-
-2. Start a shell inside the container
+1. Enter the development container (this requires Docker)
 
     ```shell
     make enter
     ```
 
-3. Build and test all outputs
+2. Build and test all outputs
 
     ```shell
     make all && make test

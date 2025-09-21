@@ -85,4 +85,4 @@ release:
 	curl -X PURGE "$(COVER_GITHUB_CACHE_URL)"
 
 enter:
-	docker run --rm -it -v "$$(pwd)":/cv -w /cv daluce/cv:latest /bin/bash
+	docker run --rm -it --pull always -v "$$(pwd)":/cv -w /cv daluce/cv:latest /bin/bash
