@@ -101,23 +101,26 @@
 }
 
 % Position and date help
-\newcommand{\position}[2]{
-    \vspace{5pt}
-    {\normalsize \textbf {#1}}
-    \hfill
-    {\normalsize \textit{#2}}
-    \\
+\newcommand{\position}[2]{%
+    \vspace{3pt}%
+    \normalsize \leftRight{\textbf{#1}}{\textit{#2}}%
+    \par%
+}
+
+
+% left-right macro using \hfill
+% Protecting the hfill (with a comment) is important to avoid weird spacing issues
+% https://tex.stackexchange.com/questions/422444/hfill-alignment-doesn%C2%B4t-work
+\newcommand{\leftRight}[2]{%
+  \leavevmode#1\hfill#2\par%
 }
 
 % Non-experience entry
-\newcommand{\resumeEntry}[4]{
-    \vspace{5pt}
-    {\large \textbf{#1}}
-    \hfill
-    {\normalsize #2}
-    \\
-    \textit{#3} \hfill \textit{#4}
-    \vspace{1pt}
+\newcommand{\resumeEntry}[4]{%
+  \vspace{5pt}%
+  \leftRight{{\large \textbf{#1}}}{{\normalsize #2}}%
+  \leftRight{{\textit{#3}}}{{\textit{#4}}}%
+  \vspace{1pt}%
 }
 
 % Bulleted list formatting
@@ -155,11 +158,14 @@
 \section{Education}
 
     %--------Cornell--------
+    %-- TODO: fix this formatting
     \resumeEntry{Cornell University}
         {Ithaca, NY}
         {Bachelor of Science in Electrical and Computer Engineering, Minor in CS}
-        {Expected Winter 2026}
-
+        {Expected Fall 2025}
+    \leftRight
+        {\textit{Master of Engineering in Computer Science, Minor in CS}}
+        {\textit{Expected Fall 2026}}
     \itemsBegin{}
         \item 4.048 GPA, Dean's List all semesters
         \item \textbf{Honors:} Tau Beta Pi Engineering Honor Society, IEEE-HKN Honor Society
