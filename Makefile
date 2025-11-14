@@ -58,8 +58,8 @@ cover-letter: $(PDF_DIR)
 # Generate images from PDFs
 images: $(IMG_DIR)
 	@if command -v convert >/dev/null 2>&1; then \
-		magick -density 300 $(DIST_DIR)/pdfs/dalton_luce_cv.pdf -quality 100 -flatten -sharpen 0x1.0 $(IMG_DIR)/$(CV_NAME).png; \
-		magick -density 300 $(DIST_DIR)/pdfs/cover_letter.pdf -quality 100 -flatten -sharpen 0x1.0 $(IMG_DIR)/$(COVER_LETTER_NAME).png; \
+		magick -density 300 $(DIST_DIR)/pdfs/$(CV_NAME).pdf -quality 100 -flatten -sharpen 0x1.0 $(IMG_DIR)/$(CV_NAME).png; \
+		magick -density 300 $(DIST_DIR)/pdfs/$(COVER_LETTER_NAME).pdf -quality 100 -flatten -sharpen 0x1.0 $(IMG_DIR)/$(COVER_LETTER_NAME).png; \
 	else \
 		echo "Imageconvert not found. Please install Imageconvert to generate images."; \
 	fi
