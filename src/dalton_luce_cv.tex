@@ -130,25 +130,27 @@
 
 % Evenly spaced list with separators
 \ExplSyntaxOn
-\NewDocumentCommand{\evenlyspaced}{m}
+\NewDocumentCommand{\evenlyspaced}{O{0.5em} m}
 {
-    % Count items
+    % #1 = optional spacing (default 0.5em)
+    % #2 = comma-separated list of items
+
+    % Counter for position
     \int_zero_new:N \l_tmpa_int
     \int_set:Nn \l_tmpa_int {0}
-    \int_set:Nn \l_tmpb_int {\clist_count:n {#1}}
+    \int_set:Nn \l_tmpb_int {\clist_count:n {#2}}
 
     % Loop over each item
-    \clist_map_inline:nn {#1}
+    \clist_map_inline:nn {#2}
     {
         \int_incr:N \l_tmpa_int
         ##1 % print item
 
-        % Add separator with extra space if not last
+        % Add separator with configurable space if not last
         \int_compare:nNnT {\l_tmpa_int} < {\l_tmpb_int}
-        { \hspace{1em} | \hspace{1em} }
+        { \hspace{#1} | \hspace{#1} }
     }
 }
-
 \ExplSyntaxOff
 
 %-------------------------
@@ -169,7 +171,7 @@
 % NOTE: parsers have easier time finding links when they begin with www.
 % Tested with https://www.open-resume.com/resume-parser
 \ifdefined\private{}
-\evenlyspaced{
+\evenlyspaced[0.5em]{
     \address,
     \phone,
     \href{mailto:\email}{\underline{\email}},
@@ -178,7 +180,7 @@
     \href{https://daltonluce.com/}{\underline{www.daltonluce.com}}
 }
 \else
-    \evenlyspaced{
+    \evenlyspaced[1em]{
         {Greater Boston, MA},
         \href{https://www.linkedin.com/in/dalton-luce/}{\underline{LinkedIn}},
         \href{https://github.com/da-luce}{\underline{GitHub}},
