@@ -13,25 +13,22 @@
   \input{./src/.private.tex}
 \fi
 
-\newcommand{\addressConditional}{
-    \ifdefined\private{}
-        \address{}
+\newcommand{\addressConditional}{%
+    \ifdefined\private
+        \address
     \else
-        Boston, MA
+        Greater Boston, MA
     \fi
-    % FIXME: weird spacing here
-    \hspace{10pt}
 }
+
 \newcommand{\phoneConditional}{
     \ifdefined\private{}
         \phone{}
-        \hspace{10pt}
     \fi
 }
 \newcommand{\emailConditional}{
     \ifdefined\private{}
         \href{mailto:\email}{\underline{\email}}
-        \hspace{10pt}
     \fi
 }
 
@@ -46,6 +43,8 @@
 \usepackage{enumitem}
 \usepackage{multicol}
 \usepackage{tabularx}
+\usepackage{xparse}
+\usepackage{expl3}
 \usepackage[T1]{fontenc}
 \input{glyphtounicode}
 \usepackage[
@@ -82,7 +81,7 @@
 \titleformat{\section}{
     \vspace{-3pt}
     \titlerule\vspace{1pt}\scshape\raggedright\large
-}{}{0em}{\vspace{-10pt}}
+}{}{0em}{\vspace{-11pt}}
 
 % Use filled circles for bullet points
 \renewcommand\labelitemi{\small\textbullet}
@@ -101,23 +100,25 @@
 }
 
 % Position and date help
-\newcommand{\position}[2]{
-    \vspace{5pt}
-    {\normalsize \textbf {#1}}
-    \hfill
-    {\normalsize \textit{#2}}
-    \\
+\newcommand{\position}[2]{%
+    \vspace{3pt}%
+    \normalsize \leftRight{\textbf{#1}}{\textit{#2}}%
+    \par%
+}
+
+% left-right macro using \hfill
+% Protecting the hfill (with a comment) is important to avoid weird spacing issues
+% https://tex.stackexchange.com/questions/422444/hfill-alignment-doesn%C2%B4t-work
+\newcommand{\leftRight}[2]{%
+  \leavevmode#1\hfill#2\par%
 }
 
 % Non-experience entry
-\newcommand{\resumeEntry}[4]{
-    \vspace{5pt}
-    {\large \textbf{#1}}
-    \hfill
-    {\normalsize #2}
-    \\
-    \textit{#3} \hfill \textit{#4}
-    \vspace{1pt}
+\newcommand{\resumeEntry}[4]{%
+  \vspace{5pt}%
+  \leftRight{{\large \textbf{#1}}}{{\normalsize #2}}%
+  \leftRight{{\textit{#3}}}{{\textit{#4}}}%
+  \vspace{1pt}%
 }
 
 % Bulleted list formatting
@@ -126,6 +127,31 @@
     \small
 }
 \newcommand{\itemsEnd}{\end{itemize}}
+
+% Evenly spaced list with separators
+\ExplSyntaxOn
+\NewDocumentCommand{\evenlyspaced}{O{0.5em} m}
+{
+    % #1 = optional spacing (default 0.5em)
+    % #2 = comma-separated list of items
+
+    % Counter for position
+    \int_zero_new:N \l_tmpa_int
+    \int_set:Nn \l_tmpa_int {0}
+    \int_set:Nn \l_tmpb_int {\clist_count:n {#2}}
+
+    % Loop over each item
+    \clist_map_inline:nn {#2}
+    {
+        \int_incr:N \l_tmpa_int
+        ##1 % print item
+
+        % Add separator with configurable space if not last
+        \int_compare:nNnT {\l_tmpa_int} < {\l_tmpb_int}
+        { \hspace{#1} | \hspace{#1} }
+    }
+}
+\ExplSyntaxOff
 
 %-------------------------
 % Misc
@@ -141,14 +167,27 @@
 \textbf{\huge \scshape Dalton Luce} \\
 \vspace{2pt}
 \small
-\addressConditional{}   % Address
-\phoneConditional{}     % Phone
-\emailConditional{}     % Email
-\href{https://www.linkedin.com/in/dalton-luce/}{\underline{LinkedIn}} % LinkedIn
-\hspace{10pt}
-\href{https://github.com/da-luce}{\underline{GitHub}}                 % GitHub
-\hspace{10pt}
-\href{https://daltonluce.com/}{\underline{daltonluce.com}}            % Website
+
+% NOTE: parsers have easier time finding links when they begin with www.
+% Tested with https://www.open-resume.com/resume-parser
+\ifdefined\private{}
+\evenlyspaced[0.5em]{
+    \address,
+    \phone,
+    \href{mailto:\email}{\underline{\email}},
+    \href{https://www.linkedin.com/in/dalton-luce/}{\underline{LinkedIn}},
+    \href{https://github.com/da-luce}{\underline{GitHub}},
+    \href{https://daltonluce.com/}{\underline{www.daltonluce.com}}
+}
+\else
+    \evenlyspaced[1em]{
+        {Greater Boston, MA},
+        \href{https://www.linkedin.com/in/dalton-luce/}{\underline{LinkedIn}},
+        \href{https://github.com/da-luce}{\underline{GitHub}},
+        \href{https://daltonluce.com/}{\underline{www.daltonluce.com}},
+    }
+\fi
+
 \vspace{-5pt}
 
 % EDUCATION --------------------------------------------------------------------
@@ -158,8 +197,11 @@
     \resumeEntry{Cornell University}
         {Ithaca, NY}
         {Bachelor of Science in Electrical and Computer Engineering, Minor in CS}
-        {Expected Winter 2026}
-
+        {Expected Fall 2025}
+    \leftRight
+        {\textit{Master of Engineering in Computer Science}}
+        {\textit{Expected Fall 2026}}
+    \vspace{3pt}
     \itemsBegin{}
         \item 4.048 GPA, Dean's List all semesters
         \item \textbf{Honors:} Tau Beta Pi Engineering Honor Society, IEEE-HKN Honor Society
