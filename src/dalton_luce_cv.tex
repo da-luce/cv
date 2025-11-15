@@ -13,25 +13,22 @@
   \input{./src/.private.tex}
 \fi
 
-\newcommand{\addressConditional}{
-    \ifdefined\private{}
-        \address{}
+\newcommand{\addressConditional}{%
+    \ifdefined\private
+        \address
     \else
         Greater Boston, MA
     \fi
-    % FIXME: weird spacing here
-    \hspace{10pt}
 }
+
 \newcommand{\phoneConditional}{
     \ifdefined\private{}
         \phone{}
-        \hspace{10pt}
     \fi
 }
 \newcommand{\emailConditional}{
     \ifdefined\private{}
         \href{mailto:\email}{\underline{\email}}
-        \hspace{10pt}
     \fi
 }
 
@@ -46,6 +43,8 @@
 \usepackage{enumitem}
 \usepackage{multicol}
 \usepackage{tabularx}
+\usepackage{xparse}
+\usepackage{expl3}
 \usepackage[T1]{fontenc}
 \input{glyphtounicode}
 \usepackage[
@@ -107,7 +106,6 @@
     \par%
 }
 
-
 % left-right macro using \hfill
 % Protecting the hfill (with a comment) is important to avoid weird spacing issues
 % https://tex.stackexchange.com/questions/422444/hfill-alignment-doesn%C2%B4t-work
@@ -130,6 +128,29 @@
 }
 \newcommand{\itemsEnd}{\end{itemize}}
 
+% Evenly spaced list with separators
+\ExplSyntaxOn
+\NewDocumentCommand{\evenlyspaced}{m}
+{
+    % Count items
+    \int_zero_new:N \l_tmpa_int
+    \int_set:Nn \l_tmpa_int {0}
+    \int_set:Nn \l_tmpb_int {\clist_count:n {#1}}
+
+    % Loop over each item
+    \clist_map_inline:nn {#1}
+    {
+        \int_incr:N \l_tmpa_int
+        ##1 % print item
+
+        % Add separator with extra space if not last
+        \int_compare:nNnT {\l_tmpa_int} < {\l_tmpb_int}
+        { \hspace{1em} | \hspace{1em} }
+    }
+}
+
+\ExplSyntaxOff
+
 %-------------------------
 % Misc
 %-------------------------
@@ -144,21 +165,33 @@
 \textbf{\huge \scshape Dalton Luce} \\
 \vspace{2pt}
 \small
-\addressConditional{}   % Address
-\phoneConditional{}     % Phone
-\emailConditional{}     % Email
-\href{https://www.linkedin.com/in/dalton-luce/}{\underline{LinkedIn}} % LinkedIn
-\hspace{10pt}
-\href{https://github.com/da-luce}{\underline{GitHub}}                 % GitHub
-\hspace{10pt}
-\href{https://daltonluce.com/}{\underline{daltonluce.com}}            % Website
+
+% NOTE: parsers have easier time finding links when they begin with www.
+% Tested with https://www.open-resume.com/resume-parser
+\ifdefined\private{}
+\evenlyspaced{
+    \address,
+    \phone,
+    \href{mailto:\email}{\underline{\email}},
+    \href{https://www.linkedin.com/in/dalton-luce/}{\underline{LinkedIn}},
+    \href{https://github.com/da-luce}{\underline{GitHub}},
+    \href{https://daltonluce.com/}{\underline{www.daltonluce.com}}
+}
+\else
+    \evenlyspaced{
+        {Greater Boston, MA},
+        \href{https://www.linkedin.com/in/dalton-luce/}{\underline{LinkedIn}},
+        \href{https://github.com/da-luce}{\underline{GitHub}},
+        \href{https://daltonluce.com/}{\underline{www.daltonluce.com}},
+    }
+\fi
+
 \vspace{-5pt}
 
 % EDUCATION --------------------------------------------------------------------
 \section{Education}
 
     %--------Cornell--------
-    %-- TODO: fix this formatting
     \resumeEntry{Cornell University}
         {Ithaca, NY}
         {Bachelor of Science in Electrical and Computer Engineering, Minor in CS}
