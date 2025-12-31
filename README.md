@@ -4,10 +4,10 @@
 <br>
 
 <p align="center">
-  <a href="https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/pdfs/dalton_luce_cv.pdf">
+  <a href="https://cdn.daltonluce.com/cv/pdfs/dalton_luce_cv.pdf">
     <img src="https://img.shields.io/badge/📄%20View_PDF-blue?style=for-the-badge&logo=&logoColor=white" alt="View PDF">
   </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/images/dalton_luce_cv.png">
+  <a href="https://cdn.daltonluce.com/cv/images/dalton_luce_cv.png">
     <img src="https://img.shields.io/badge/🌄%20View_PNG-blue?style=for-the-badge&logo=&logoColor=white" alt="View PNG">
   </a>
 </p>
@@ -23,13 +23,13 @@ Maybe I can convince you to become one too—_[here's why](#why-this-setup)._
 
 ## Screenshots
 
-### Curriculum Vitae &nbsp; [![PDF](https://img.shields.io/badge/PDF-blue?style=flat)](https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/pdfs/dalton_luce_cv.pdf)
+### Curriculum Vitae &nbsp; [![PDF](https://img.shields.io/badge/PDF-blue?style=flat)](https://cdn.daltonluce.com/cv/pdfs/dalton_luce_cv.pdf)
 
-![CV Image](https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/images/dalton_luce_cv.png)
+![CV Image](https://cdn.daltonluce.com/cv/images/dalton_luce_cv.png)
 
-### Cover Letter &nbsp; [![PDF](https://img.shields.io/badge/PDF-blue?style=flat)](https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/pdfs/cover_letter.pdf)
+### Cover Letter &nbsp; [![PDF](https://img.shields.io/badge/PDF-blue?style=flat)](https://cdn.daltonluce.com/cv/pdfs/cover_letter.pdf)
 
-![Cover Letter Image](https://dalton-cv-artifacts.s3.us-east-1.amazonaws.com/images/cover_letter.png)
+![Cover Letter Image](https://cdn.daltonluce.com/cv/images/cover_letter.png)
 
 ## Building
 

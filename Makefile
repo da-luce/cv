@@ -11,7 +11,7 @@ PDF_DIR := $(DIST_DIR)/pdfs
 IMG_DIR := $(DIST_DIR)/images
 CV_NAME := dalton_luce_cv
 COVER_LETTER_NAME := cover_letter
-S3_BUCKET := dalton-cv-artifacts
+S3_BUCKET_PREFIX := dalton-cv-artifacts/cv
 AWS_REGION := us-east-1
 
 # These are GitHub Camo image proxy URLs.
@@ -77,9 +77,10 @@ test:
 	fi
 	cvlint check $(PDF_DIR)/$(CV_NAME).pdf
 
+# IMPORTANT: artifacts must be uploaded under the 'cv/' prefix
 release:
-	aws s3 cp $(PDF_DIR)/ s3://$(S3_BUCKET)/pdfs/ --recursive --region $(AWS_REGION)
-	aws s3 cp $(IMG_DIR)/ s3://$(S3_BUCKET)/images/ --recursive --region $(AWS_REGION)
+	aws s3 cp $(PDF_DIR)/ s3://$(S3_BUCKET_PREFIX)/pdfs/ --recursive --region $(AWS_REGION)
+	aws s3 cp $(IMG_DIR)/ s3://$(S3_BUCKET_PREFIX)/images/ --recursive --region $(AWS_REGION)
 	# Purge GitHub Camo image cache, so updated images show up in README immediately
 	curl -X PURGE "$(CV_GITHUB_CACHE_URL)"
 	curl -X PURGE "$(COVER_GITHUB_CACHE_URL)"
