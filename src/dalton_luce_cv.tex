@@ -212,6 +212,19 @@
 % EXPERIENCE ------------------------------------------------------------------
 \section{Experience}
 
+    %--------Databricks --------
+    \company{Databricks}{Bellevue, WA}
+    \position{Software Engineering Intern}{May--Aug 2026}
+    \itemsBegin{}
+        \item Owned, implemented, and shipped AWS SQS Streaming Connector, capable of ingesting 10B+ messages/day and and handling a customer's workload on 20 time less compute than their existing pipeline
+        \item Architected a shared queue-streaming engine for SQS and Pub/Sub, isolating queue-specific behavior to a thin per-connector layer that eliminates duplicated logic and cuts maintenance to one shared core
+        \item Cut new-connector development ~16x, building a full Azure Queue Storage source on it in 1 week versus standard 16 week development cycle
+        \item Guaranteed at-least-once, fault-tolerant ingestion via durable Parquet staging and RocksDB-backed dedup, surviving driver and executor restarts and mid-epoch failures with no data loss or duplicates
+        \item Productionized and hardened the connector via live high-volume benchmarking, data-driven throughput defaults, and a chaos harness that kills executors mid-stream to prove zero-loss recovery
+        %% \item Benchmarked throughput on live, high-volume SQS queues to pin single-core limits and set data-driven defaults that maximize compute utilization
+        %% \item Built a chaos-testing harness that kills executors mid-stream to prove the connector recovers with zero message loss under a continuous firehose
+    \itemsEnd{}
+
     %--------AWS --------
     \company{Amazon Web Services}{Santa Monica, CA}
     \position{Software Development Engineer, Intern}{May--Aug 2025}
