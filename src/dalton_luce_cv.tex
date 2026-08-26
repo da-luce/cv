@@ -92,7 +92,7 @@
 
 % Company name
 \newcommand{\company}[2]{
-    \vspace{7pt}
+    \vspace{3pt}
     {\large \textbf{#1}}
     \hfill
     {\normalsize {#2}}
@@ -101,7 +101,7 @@
 
 % Position and date help
 \newcommand{\position}[2]{%
-    \vspace{3pt}%
+    \vspace{2pt}%
     \normalsize \leftRight{\textbf{#1}}{\textit{#2}}%
     \par%
 }
@@ -216,13 +216,11 @@
     \company{Databricks}{Bellevue, WA}
     \position{Software Engineering Intern}{May--Aug 2026}
     \itemsBegin{}
-        \item Owned, implemented, and shipped AWS SQS Streaming Connector, capable of ingesting 10B+ messages/day and and handling a customer's workload on 20 time less compute than their existing pipeline
-        \item Architected a shared queue-streaming engine for SQS and Pub/Sub, isolating queue-specific behavior to a thin per-connector layer that eliminates duplicated logic and cuts maintenance to one shared core
-        \item Cut new-connector development ~16x, building a full Azure Queue Storage source on it in 1 week versus standard 16 week development cycle
-        \item Guaranteed at-least-once, fault-tolerant ingestion via durable Parquet staging and RocksDB-backed dedup, surviving driver and executor restarts and mid-epoch failures with no data loss or duplicates
-        \item Productionized and hardened the connector via live high-volume benchmarking, data-driven throughput defaults, and a chaos harness that kills executors mid-stream to prove zero-loss recovery
-        %% \item Benchmarked throughput on live, high-volume SQS queues to pin single-core limits and set data-driven defaults that maximize compute utilization
-        %% \item Built a chaos-testing harness that kills executors mid-stream to prove the connector recovers with zero message loss under a continuous firehose
+        \item Owned and shipped AWS SQS Streaming Connector, cutting a customer's compute cost 20x, benchmarked at 10B+ messages/day
+        \item Architected a shared engine for SQS and Pub/Sub, isolating queue logic to a thin connector layer to cut maintenance to one core
+        \item Cut new-connector development \textasciitilde{}16x, building a full Azure Queue Storage connector in 1 week versus the standard 16-week cycle
+        \item Guaranteed exactly-once ingestion via durable Parquet staging and RocksDB deduplication, surviving crashes with zero data loss
+        \item Productionized the connector via live benchmarking, data-driven throughput defaults, and a chaos harness for zero-loss recovery
     \itemsEnd{}
 
     %--------AWS --------
@@ -245,8 +243,6 @@
         \item Developed Perl tooling with Git and Docker to drive DevSecOps pipeline migration to GitLab, Jira, supporting over 1,000 developers
         \item Built NTP (Network Time Protocol) monitoring script to detect timing discrepancies across 300+ Linux systems
         \item Jira admin: Groovy scripting with ScriptRunner and Jira API to implement custom validations and checks across key workflow stages
-        \item Validated C++ code pull requests for naval radar product branch by investigating automated test suite failures and radar simulations
-        \item Utilized Grafana to analyze server downtime and resource allocation trends to inform data-driven improvements in the DevOps pipeline
         \item Jenkins admin: updated and debugged CI/CD pipelines for infrastructure stability, code validation, deployments, and resource scaling
     \itemsEnd{}
 
@@ -255,9 +251,6 @@
     \itemsBegin{}
         \item Enhanced system diagnostics of X-Band Radar software (1M+ lines of code) by resolving low-level messaging and queuing issues
         \item Gained proficiency in Ada, ClearCase version control, and Jenkins to correct radar functionality, validate using radar simulations
-        \item Assisted in redeveloping a tool to simulate external messages and test radar capabilities
-        \item Collaborated across teams of system engineers, validation teams, and software developers to align functionality with system requirements
-        \item Participated in code reviews, sprint planning, and backlog refinement
     \itemsEnd{}
 
     %--------Autobike--------
@@ -289,7 +282,7 @@
         \item Developed a
         \href{https://github.com/da-luce/astroterm}{\underline{command line application}}
         to display real-time planetary and stellar positions
-        \item Achieved 1.7K+ stars and multiple contributors on GitHub; featured on multiple online
+        \item Achieved 2K+ stars and multiple contributors on GitHub; featured on multiple online
         \href{https://www.linuxlinks.com/astroterm-terminal-based-star-map/}{\underline{articles}}
         \href{https://github.com/toolleeo/awesome-cli-apps-in-a-csv?tab=readme-ov-file#graphics}{\underline{and}}
         \href{https://terminaltrove.com/astroterm/}{\underline{blogs}}
@@ -297,11 +290,10 @@
         \href{https://tdc-www.harvard.edu/catalogs/bsc5.html}{\underline{Yale Bright Star Catalog}},
         enabling real-time celestial data visualization
         \item Created robust GitHub Actions workflow to automate code formatting, linting, coverage analysis, and release packaging
-        \item Packaged and distributed for major Linux distributions and package repositories, including
+        \item Packaged and distributed for major Linux distributions and repositories, including
         \href{https://packages.fedoraproject.org/pkgs/astroterm/astroterm/index.html}{\underline{Fedora}},
         \href{https://search.nixos.org/packages?channel=unstable&show=astroterm&from=0&size=50&sort=relevance&type=packages&query=astroterm}{\underline{Nix}}, and
-        \href{https://formulae.brew.sh/formula/astroterm#default}{\underline{Homebrew}},
-        enabling seamless installation across multiple platforms
+        \href{https://formulae.brew.sh/formula/astroterm#default}{\underline{Homebrew}}
     \itemsEnd{}
 
 % TECHNICAL SKILLS -------------------------------------------------------------
