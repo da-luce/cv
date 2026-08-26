@@ -218,7 +218,7 @@
     \itemsBegin{}
         \item Owned and shipped AWS SQS Streaming Connector, cutting a customer's compute cost 20x, benchmarked at 10B+ messages/day
         \item Architected a shared engine for SQS and Pub/Sub, isolating queue logic to a thin connector layer to cut maintenance to one core
-        \item Cut new-connector development \textasciitilde{}16x, building a full Azure Queue Storage connector in 1 week versus the standard 16-week cycle
+        \item Cut new-connector development 16x, building a full Azure Queue Storage connector in 1 week versus the standard 16-week cycle
         \item Guaranteed exactly-once ingestion via durable Parquet staging and RocksDB deduplication, surviving crashes with zero data loss
         \item Productionized the connector via live benchmarking, data-driven throughput defaults, and a chaos harness for zero-loss recovery
     \itemsEnd{}
