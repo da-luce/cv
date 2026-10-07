@@ -14,11 +14,7 @@ COVER_LETTER_NAME := cover_letter
 S3_BUCKET_PREFIX := dalton-cv-artifacts/cv
 AWS_REGION := us-east-1
 
-# These are GitHub Camo image proxy URLs.
-# To obtain them: paste the raw S3 image link into a GitHub Markdown file (README, issue, etc.),
-# let GitHub render it, then right-click → "Copy image address".
-CV_GITHUB_CACHE_URL:= https://camo.githubusercontent.com/19e0bf2e0d1d9b58f0bd2a4bf66b214f817d5ae7e72ff4e3684b8b15522be23f/68747470733a2f2f64616c746f6e2d63762d6172746966616374732e73332e75732d656173742d312e616d617a6f6e6177732e636f6d2f696d616765732f63762e706e67
-COVER_GITHUB_CACHE_URL:= https://camo.githubusercontent.com/31c147493e3d013bd48fcbeda87b802e2a8012a64faf6dc324f640ba7eec4f24/68747470733a2f2f64616c746f6e2d63762d6172746966616374732e73332e75732d656173742d312e616d617a6f6e6177732e636f6d2f696d616765732f636f7665725f6c65747465722e706e67
+CACHE_CONTROL := public, max-age=300
 
 # Help target
 help:
@@ -31,7 +27,7 @@ help:
 	@echo "  clean          - Remove all build and distribution artifacts"
 	@echo "  install        - Install Python dependencies (not defined here)"
 	@echo "  test           - Run cvlint on the generated CV PDF"
-	@echo "  release        - Upload PDFs and images to S3, purge GitHub Camo cache"
+	@echo "  release        - Upload PDFs and images to S3"
 
 # Create necessary directories
 $(PDF_DIR) $(IMG_DIR):
@@ -79,11 +75,8 @@ test:
 
 # IMPORTANT: artifacts must be uploaded under the 'cv/' prefix
 release:
-	aws s3 cp $(PDF_DIR)/ s3://$(S3_BUCKET_PREFIX)/pdfs/ --recursive --region $(AWS_REGION)
-	aws s3 cp $(IMG_DIR)/ s3://$(S3_BUCKET_PREFIX)/images/ --recursive --region $(AWS_REGION)
-	# Purge GitHub Camo image cache, so updated images show up in README immediately
-	curl -X PURGE "$(CV_GITHUB_CACHE_URL)"
-	curl -X PURGE "$(COVER_GITHUB_CACHE_URL)"
+	aws s3 cp $(PDF_DIR)/ s3://$(S3_BUCKET_PREFIX)/pdfs/ --recursive --region $(AWS_REGION) --cache-control "$(CACHE_CONTROL)"
+	aws s3 cp $(IMG_DIR)/ s3://$(S3_BUCKET_PREFIX)/images/ --recursive --region $(AWS_REGION) --cache-control "$(CACHE_CONTROL)"
 
 enter:
 	docker run --rm -it --pull always -v "$$(pwd)":/cv -w /cv daluce/cv:latest /bin/bash
